@@ -6,6 +6,7 @@ dotenv.config()
 import express from "express"
 import mongoose from "mongoose"
 import cors from "cors"
+import authRouter from "./routes/auth.js"
 
 
 
@@ -16,6 +17,17 @@ app.use(express.json())
 
 
 //
+// app.post("/auth/signup",(req,res)=>{
+//     console.log("api hitting directly")
+// }) we cant use directly instead use middleware
+
+app.use("/auth",authRouter)
+
+
+
+
+
+
 const db=process.env.DB_URI
 
 mongoose.connect(db).then(()=>{
